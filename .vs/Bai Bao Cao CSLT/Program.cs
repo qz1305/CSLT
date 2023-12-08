@@ -103,32 +103,78 @@ namespace Bai_Bao_Cao_CSLT
             }
             Console.WriteLine("Kết quả: " + kq);
         }
+        static long Tongtien(object[] khach)
+        {
+            return (long)((int)khach[1] * (int)khach[3] + (int)khach[2] * (int)khach[4] + (int)khach[5]);
+        }
+        static long Tienan(object[] khach)
+        {
+            return (long)((int)khach[2] * (int)khach[4]);
+        }
+        static long Tieno(object[] khach)
+        {
+            return (long)((int)khach[1] * (int)khach[3]);
+        }
+        static void NhapTT1khach(object[] khach)
+        {
+            Console.WriteLine("Nhập tên khách hàng: ");
+            khach[0] = Console.ReadLine();
+            Console.WriteLine("Nhập số ngày ở: ");
+            khach[1] = int.Parse(Console.ReadLine());
+            Console.WriteLine("Nhập số bữa ăn: ");
+            khach[2] = int.Parse(Console.ReadLine());
+            Console.WriteLine("Nhập số tiền ở 1 ngày: ");
+            khach[3] = int.Parse(Console.ReadLine());
+            Console.WriteLine("Nhập số tiền ăn 1 bữa: ");
+            khach[4] = int.Parse(Console.ReadLine());
+            Console.WriteLine("Nhập phí phục vụ: ");
+            khach[5] = int.Parse(Console.ReadLine());
+        }
+        static string XuatTT1khach(object[] khach)
+        {
+            long TongTien = (long)((int)khach[1] * (int)khach[3] + (int)khach[2] * (int)khach[4] + (int)khach[5]);
+            long TienAn = (long)((int)khach[2] * (int)khach[4]);
+            long TienO = (long)((int)khach[1] * (int)khach[3]);
+            string result = "";
+            result += "\n********************************************************************\n\t\t\tKHÁCH SẠN FIVE STAR\n";
+            result += "Hóa đơn khách sạn: \n";
+            result += $" Quí Ông(Bà): [{khach[0]}]\n";
+            result += $" Số ngày ở [{khach[1]}]";
+            result += $" \t\tSố bữa ăn [{khach[2]}]\n";
+            result += $" Tiền ăn: {Tienan(khach)} VNĐ\n";
+            result += $" \t\tTiền ở: {Tieno(khach)} VNĐ\n";
+            result += $" \t\tPhí phục vụ [{khach[5]}] VNĐ\n";
+            result += $" Tổng cộng: {Tongtien(khach)} VNĐ\n";
+            result += "\t\t\tHân hạnh phục vụ quí khách\n********************************************************************\n";
+            return result;
+        }
+        static void NhapTTcackhach(object[][] khachs)
+        {
+            for (int i = 0; i < khachs.Length; i++)
+            {
+                Console.WriteLine($">> Nhập thông tin khách hàng {i + 1}");
+                NhapTT1khach(khachs[i]);
+            }
+        }
+        static string XuatTTcackhach(object[][] khachs)
+        {
+            string result = "";
+            for (int i = 0; i < khachs.Length; i++)
+                result += XuatTT1khach(khachs[i]) + "\n\n";
+            return result;
+        }
+        static object[][] KhoiTaoMangKhach(int n)
+        {
+            object[][] khachs = new object[n][];
+            for (int i = 0; i < khachs.Length; i++)
+                khachs[i] = new object[6];
+            return khachs;
+        }
         static void Bai6()
         {
-            Console.Write("Mời nhập họ tên quí ông/bà : ");
-            string tendaydu = Console.ReadLine();
-            Console.Write("Số ngày quí ông/bà ở khách sạn : ");
-            int SoNgayO = int.Parse(Console.ReadLine());
-            Console.Write("Số bữa ăn của quí ông/bà : ");
-            int SoBuaAn = int.Parse(Console.ReadLine());
-            Console.Write("Tiền ở một ngày của quí ông/bà : ");
-            int TienOMotNgay = int.Parse(Console.ReadLine());
-            Console.Write("Tiền ăn mỗi bữa của quí ông/bà : ");
-            int TienAnMoiBua = int.Parse(Console.ReadLine());
-            Console.Write("Phí dịch vụ của quí ông/bà : ");
-            int PhiDichVu = int.Parse(Console.ReadLine());
-            int TienO = SoNgayO * TienOMotNgay;
-            int TienAn = SoBuaAn * TienAnMoiBua;
-            int TongCong = TienO + TienAn + PhiDichVu;
-            Console.WriteLine("********************************************************************************************");
-            Console.WriteLine("Khách sạn Five Stars");
-            Console.WriteLine("Hóa đơn khách sạn");
-            Console.WriteLine("Quý ÔNG(BÀ): " + tendaydu);
-            Console.WriteLine("Số ngày ở: " + SoNgayO + "\t\t| Số bữa ăn: " + SoBuaAn);
-            Console.WriteLine("Tiền ở: " + TienO + "\t\t| Tiền ăn: " + TienAn + "\t\t| Phí phục vụ: " + PhiDichVu);
-            Console.WriteLine($"Tổng cộng: {TongCong} VNĐ");
-            Console.WriteLine("\t\t\tHân hạnh phục vụ quý khách ");
-            Console.WriteLine("********************************************************************************************");
+            object[][] khachs = KhoiTaoMangKhach(6);
+            NhapTTcackhach(khachs);
+            Console.WriteLine(XuatTTcackhach(khachs));
         }
         static void Main(string[] args)
         {
@@ -144,7 +190,7 @@ namespace Bai_Bao_Cao_CSLT
             Console.WriteLine("BÀI 2: Tính P ");
             Console.WriteLine("BÀI 3: Dùng mảng 1 chiều để in ra n số hạng đầu tiên của dãy số Fibonacci");
             Console.WriteLine("BÀI 5: Đọc vào một chuỗi, đổi sang chuỗi chữ hoa đầu mỗi từ\nVí dụ S=”Cong nghe thong tin KINH doaNH”\nKết quả in ra ”Cong Nghe Thong Tin Kinh Doanh”");
-            Console.WriteLine("BÀI 6: In hóa đơn tính tiền");
+            Console.WriteLine("BÀI 6: Cho mảng nhiều chiều gồm có các thông tin liên quan đến khách lưu trú ở khách sạn. Khách gồm các thông tin: họ tên, số ngày ở, số bữa an, tiền ở (1 ngày), tiền ăn (1 bữa), phí phục vụ. Phân tích và viết chương trình tính tiền trọ khách sạn. In hóa đơn tính tiền lên màn hình.");
             Console.Write("Vui lòng chọn yêu cầu của bạn: ");
             char input = Console.ReadKey().KeyChar;
             Console.Clear();
