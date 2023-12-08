@@ -1,0 +1,7 @@
+C:\Users\Admin\source\repos\Bai Bao Cao CSLT\Bai Bao Cao CSLT\bin\Debug\Bai Bao Cao CSLT.exe.config
+C:\Users\Admin\source\repos\Bai Bao Cao CSLT\Bai Bao Cao CSLT\bin\Debug\Bai Bao Cao CSLT.exe
+C:\Users\Admin\source\repos\Bai Bao Cao CSLT\Bai Bao Cao CSLT\bin\Debug\Bai Bao Cao CSLT.pdb
+C:\Users\Admin\source\repos\Bai Bao Cao CSLT\Bai Bao Cao CSLT\obj\Debug\Bai Bao Cao CSLT.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\Bai Bao Cao CSLT\Bai Bao Cao CSLT\obj\Debug\Bai Bao Cao CSLT.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Bai Bao Cao CSLT\Bai Bao Cao CSLT\obj\Debug\Bai Bao Cao CSLT.exe
+C:\Users\Admin\source\repos\Bai Bao Cao CSLT\Bai Bao Cao CSLT\obj\Debug\Bai Bao Cao CSLT.pdb
