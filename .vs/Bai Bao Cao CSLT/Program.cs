@@ -117,17 +117,17 @@ namespace Bai_Bao_Cao_CSLT
         }
         static void NhapTT1khach(object[] khach)
         {
-            Console.WriteLine("Nhập tên khách hàng: ");
+            Console.Write("Nhập tên khách hàng: ");
             khach[0] = Console.ReadLine();
-            Console.WriteLine("Nhập số ngày ở: ");
+            Console.Write("Nhập số ngày ở: ");
             khach[1] = int.Parse(Console.ReadLine());
-            Console.WriteLine("Nhập số bữa ăn: ");
+            Console.Write("Nhập số bữa ăn: ");
             khach[2] = int.Parse(Console.ReadLine());
-            Console.WriteLine("Nhập số tiền ở 1 ngày: ");
+            Console.Write("Nhập số tiền ở 1 ngày: ");
             khach[3] = int.Parse(Console.ReadLine());
-            Console.WriteLine("Nhập số tiền ăn 1 bữa: ");
+            Console.Write("Nhập số tiền ăn 1 bữa: ");
             khach[4] = int.Parse(Console.ReadLine());
-            Console.WriteLine("Nhập phí phục vụ: ");
+            Console.Write("Nhập phí phục vụ: ");
             khach[5] = int.Parse(Console.ReadLine());
         }
         static string XuatTT1khach(object[] khach)
