@@ -1,25 +1,94 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34031.279
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticeBuoi1", "PracticeBuoi1\PracticeBuoi1.csproj", "{1DA12880-AEDC-4B7D-8EE2-88CCC4C8B426}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1DA12880-AEDC-4B7D-8EE2-88CCC4C8B426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1DA12880-AEDC-4B7D-8EE2-88CCC4C8B426}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1DA12880-AEDC-4B7D-8EE2-88CCC4C8B426}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1DA12880-AEDC-4B7D-8EE2-88CCC4C8B426}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A2E20734-361B-4329-B0BC-B3A62AC2787D}
-	EndGlobalSection
-EndGlobal
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PracticeBuoi1
+{
+    internal class Program
+    {
+        static void Swap<T>(ref T a, ref T b)
+        {
+            T temp = a;
+            a = b;
+            b = temp;
+        }
+        static void Swap(ref object a, ref object b)
+        {
+            object temp = a;
+            a = b;
+            b = temp;
+        }
+        static T Add<T, Q>(T a, T b)
+        {
+            if (a is Array && b is Array)
+            {
+                Array ar = (dynamic)a;
+                Array br = (dynamic)b;
+                Array sum = Array.CreateInstance(typeof(object), ar.Length + br.Length);
+                for (int i = 0; i < ar.Length; i++)
+                    sum.SetValue(ar.GetValue(i), i);
+                for (int i = 0; i < br.Length; i++)
+                    sum.SetValue(br.GetValue(i), ar.Length + i);
+                Q[] sumr = new Q[sum.Length];
+                for (int i = 0; i < sum.Length; i++)
+                    sumr[i] = (Q)sum.GetValue(i);
+                return (dynamic)sumr;
+            }
+            else
+                return (dynamic)a + (dynamic)b;
+        }
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.InputEncoding = System.Text.Encoding.UTF8;
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            string s1 = "di", s2 = "hoc";
+            object c = 2.3f;
+            Console.WriteLine(c.GetType());
+            int x = 2, y = 3;
+            Console.WriteLine($"x={x}, y={y}");
+            Swap(ref x, ref y);
+            Console.WriteLine($"x={x}, y={y}");
+            string[] ar = { "1", "2" }, br = { "3", "4", "5" };
+            Array cr = Add<string[], string>(ar, br);
+            Console.WriteLine($"{x}+{y}={Add<int, int>(x, y)}");
+            Console.WriteLine($"{s1}+{s2}={Add<string, string>(s1, s2)}");
+
+            foreach (string v in cr)
+            {
+                Console.Write(v + " ");
+                Console.WriteLine();
+            }
+
+            Random random = new Random();
+            int[] arr = new int[1000];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = random.Next();
+            }
+            int maxNumber = int.MinValue;
+            int minNumber = int.MaxValue;
+            foreach (int number in arr)
+            {
+                if (number > maxNumber)
+                {
+                    maxNumber = number;
+                }
+                if (number < minNumber)
+                {
+                    minNumber = number;
+                }
+            }
+            Console.WriteLine($"Số lớn nhất trong mảng là: {maxNumber}");
+            Console.WriteLine($"Số bé nhất trong mảng là: {minNumber}");
+            stopwatch.Stop();
+            double elapsedNanoSeconds = stopwatch.ElapsedTicks * 100.0;
+            Console.WriteLine($"Thời gian thực thi: {elapsedNanoSeconds} Nano giây");
+            Console.ReadKey();
+        }
+    }
+}
